@@ -1,26 +1,38 @@
-import React, { useEffect, useState } from 'react';
-import { usePosts } from '../../hooks/useApi';
+import React, { useState } from 'react';
 import Post from './components/Post';
 
-const Posts = () => {
-  const { getPosts } = usePosts();
-  const [posts, setPosts] = useState([]);
+export default function Posts () {
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    setPosts([]);
-  }, [posts])
   
+
+
+  // useEffect(() => {
+  //   fetch('https://jsonplaceholder.typicode.com/posts')
+  //   .then(res => {
+  //     return res.json()
+  //   })
+  //   .then(data => {
+  //     setPosts(data);
+  //     setError(false);
+  //   })
+  //   .catch(err =>{
+  //     setError(err.message);
+  //   })
+  // })
+
   return (
     <div className="posts">
-      {!error && (
+      {!setError && (
         <div className="alert">
           Can't load posts due to an error.
         </div>
       )}
-      { posts.map(post => (<Post {...post} />)) }
-    </div>
+      <Post />
+      {/* {!setError && <div className="alert">
+          Can't load posts due to an error.
+        </div>}
+      {posts && <Post/>} */}
+    </div> 
   )
 }
-
-export default React.memo(Posts);
